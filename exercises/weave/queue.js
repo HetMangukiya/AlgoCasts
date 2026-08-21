@@ -7,14 +7,26 @@
 class Queue {
   constructor() {
     this.data = [];
+    this.next = 0;
   }
 
-  add(record) {
-    this.data.unshift(record);
+  add(el) {
+    this.data.push(el);
   }
 
   remove() {
-    return this.data.pop();
+    if (this.next >= this.data.length) {
+      return undefined;
+    }
+
+    const nextEl = this.data[this.next];
+    this.data[this.next++] = null;
+
+    return nextEl;
+  }
+
+  peek() {
+    return this.data[this.next];
   }
 }
 
