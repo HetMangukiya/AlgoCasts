@@ -151,8 +151,9 @@ class LinkedList {
       return;
     }
     let pointer = this.head;
+    let index = 0;
     while (pointer) {
-      fn(pointer);
+      fn(pointer, index++);
       pointer = pointer.next;
     }
   }
