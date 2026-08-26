@@ -75,3 +75,20 @@ test('Events can be toggled off', () => {
   expect(cb1.mock.calls.length).toBe(1);
   expect(cb2.mock.calls.length).toBe(1);
 });
+
+test('Single event can be toggled off', () => {
+  const events = new Events();
+
+  const cb1 = jest.fn();
+  const cb2 = jest.fn();
+
+  events.on('click', cb1);
+  events.on('click', cb2);
+
+  events.trigger('click');
+  events.off('click', cb1);
+  events.trigger('click');
+
+  expect(cb1.mock.calls.length).toBe(1);
+  expect(cb2.mock.calls.length).toBe(2);
+});
